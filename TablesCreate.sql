@@ -1,0 +1,35 @@
+CREATE TABLE Room
+(
+    Id INT NOT NULL PRIMARY KEY,
+    Number INT NOT NULL,
+    Price MONEY NOT NULL,
+    NumberOfSeats INT NOT NULL,
+    Category NVARCHAR(30) NOT NULL,
+)
+
+CREATE TABLE Guest
+(
+    Id INT NOT NULL PRIMARY KEY,
+    FullName NVARCHAR(100) NOT NULL,
+    Birthday Datetime NOT NULL,
+    Address NVARCHAR(100)NOT NULL,
+)
+
+CREATE TABLE [CheckIn CheckOut]
+(
+    Id INT NOT NULL PRIMARY KEY,
+    RoomId INT NOT NULL FOREIGN KEY REFERENCES [Room](Id),
+    GuestId INT NOT NULL FOREIGN KEY REFERENCES [Room](Id),
+	CheckInDate Datetime NOT NULL,
+	CheckOutDate DateTime
+
+)
+
+CREATE TABLE [Booked Rooms]
+(
+    Id INT NOT NULL PRIMARY KEY,
+    RoomId INT NOT NULL FOREIGN KEY REFERENCES [Room](Id),
+    GuestId INT NOT NULL FOREIGN KEY REFERENCES [Room](Id),
+	StartDate Datetime NOT NULL,
+	EndDate DateTime NOT NULL,
+)
